@@ -22,10 +22,7 @@ There are two main artifacts involved:
 - A Google Sheets Workbook
     - This workbook contains spreadsheets that map out various aspects of the attack matrix. It contains 3 spreadsheets. 
         1. **Assessment by Control/Product:** This spreadsheet contains a list of all the GCP services relevant within the context of the attack matrix. To protect, detect, or respond to a TTP, the relevant GCP services should be in use by the customer, and configured properly. This sheet is a good starting point to understand which services are in use by a customer. 
-        2. **Control/Product to Technique:** This spreadsheet contains a list of Techniques mapped to the GCP service that can protect, detect, or respond against each technique. 
-        
-        Just because a customer has a GCP service enabled, it does mean that they're secured against a technique. The service has to be configured properly as well.
-        This sheet maps techniques to services (Capability) as well as proper setup of those services (Capabilities)
+        2. **Control/Product to Technique:** This spreadsheet contains a list of Techniques mapped to the GCP service that can protect, detect, or respond against each technique. Just because a customer has a GCP service enabled, it does mean that they're secured against a technique. The service has to be configured properly as well.This sheet maps techniques to services (Capability) as well as proper setup of those services (Capabilities)
         3. **Tactic/Technique**: This spreadsheet contains an overall view of TTPs and GCP services.
 
  ## How to use it
