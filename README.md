@@ -15,7 +15,7 @@ TTP is an acronym for Tactics, Techniques, and Procedures.
 - **Techniques**: Techniques refer to the unique ways or methods used to perform missions, functions, or tasks. Techniques are non-prescriptive, there is no defined order of execution with techniques. For example: T1407 - Valid Accounts is a technique that applies across various tactics like Inital Access and Privilege Escalation.
 - **Procedures**: Procedures refer to standard, detailed steps that prescribe how to perform specific tasks. These are unique to each threat actor, and can be used to fingerprint attacker's movement through a system. For example: An attacker might consistently perform a single `ping -n 1` to the target system prior to executing an attack. The single instance of this command is an indicator, and multiple indicators form a pattern, which is called a procedure. 
 
-*Reference: On TTPs[http://ryanstillions.blogspot.com/2014/04/on-ttps.html]*
+*Reference: [On TTPs](http://ryanstillions.blogspot.com/2014/04/on-ttps.html)*
 
 ## Artifacts
 
