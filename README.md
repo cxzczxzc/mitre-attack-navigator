@@ -1,4 +1,4 @@
-# mitre-attack-navigator
+# MITRE ATT&CK Analysis and Heatmap Toolkit
 A suite for generating MITRE ATT&amp;CK Navigation Layers from Google Sheets
 
 ## Summary
