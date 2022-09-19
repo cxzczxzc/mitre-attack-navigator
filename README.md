@@ -1,12 +1,8 @@
-# MITRE ATT&CK Analysis and Heatmap Toolkit
+# MITRE ATT&CK Analysis and Heatmap Toolkit for GCP
 A suite for generating MITRE ATT&amp;CK Navigation Layers from Google Sheets
 
-## Summary
-
-This is a set of scripts that parses Google Sheets and generates a Mitre ATT&CK Navigation Layer. 
-
 ### Purpose
-This suite is used for performing a risk assessment for an organization using the MITRE ATT&CK Matrix. This matrix helps understand security in the context of a threat actor's pathways into an organization. 
+This suite is used for performing a risk assessment for a GCP organization using the MITRE ATT&CK Matrix. This matrix helps understand security in the context of a threat actor's pathways into an organization. 
 
 #### TTPs
 TTP is an acronym for Tactics, Techniques, and Procedures.
