@@ -6,7 +6,7 @@ A suite for generating MITRE ATT&amp;CK Navigation Layers from Google Sheets
 This is a set of scripts that parses Google Sheets and generates a Mitre ATT&CK Navigation Layer. 
 
 ### Purpose
-For performing a risk assessment for an organization using the MITRE ATT&CK Matrix. This matrix helps understand security in the context of a threat actor's pathways into an organization. 
+This suite is used for performing a risk assessment for an organization using the MITRE ATT&CK Matrix. This matrix helps understand security in the context of a threat actor's pathways into an organization. 
 
 #### TTPs
 TTP is an acronym for Tactics, Techniques, and Procedures.
