@@ -4,7 +4,7 @@ import google.auth
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-class TechniqueToCapability():
+class TechniqueMap():
     def __init__(self, technique=None, capability=None, color=None, service=None, enabled=True):
         self.technique = technique
         self.capability = capability
@@ -75,7 +75,7 @@ class SheetController():
             row[technique_row_index].strip() == "Technique ID":
                 continue
             else:
-                technique_to_capability = TechniqueToCapability()
+                technique_to_capability = TechniqueMap()
                 technique_to_capability.technique = row[technique_row_index].strip()
                 technique_to_capability.capability = row[capability_row_index].strip()
                 technique_to_capability.service = row[service_row_index].strip()
