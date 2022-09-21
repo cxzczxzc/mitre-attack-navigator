@@ -99,7 +99,8 @@ class LayerGenerator():
         
         notes = [{"name" : "Notes", "value": notes_string}, {"divider":True}]
         final_metadata = []
-        final_metadata.append(notes)
+        for note in notes:
+            final_metadata.append(note)
 
         if metadata is not None:
             for x in service_status:
