@@ -26,7 +26,7 @@ There are two main artifacts involved:
 
     - These scripts parse the data contained in Google Sheets into JSON
     - The JSON is then uploaded to render heatmaps on the [MITRE ATT&CK® Navigator website.](https://mitre-attack.github.io/attack-navigator/)
-    - The official GCP MITRE ATT&CK® Navigator heatmap can be seen [here](https://mitre-attack.github.io/attack-navigator/#layerURL=https://center-for-threat-informed-defense.github.io/security-stack-mappings/GCP/layers/platform.json)
+    - The official GCP MITRE ATT&CK® Navigator heatmap can be seen [here.](https://mitre-attack.github.io/attack-navigator/#layerURL=https://center-for-threat-informed-defense.github.io/security-stack-mappings/GCP/layers/platform.json)
 
 
  ## Usage

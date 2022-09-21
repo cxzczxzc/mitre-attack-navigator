@@ -38,16 +38,20 @@ class LayerGenerator():
             data["legendItems"] = self.get_legend_items()
             
             for detail in data["techniques"]:
+                
                 if detail["techniqueID"] in disabled_techniques:
                     detail["enabled"] = False
                     continue
                 
                 map_items = self.find_item_in_map(technique_map, detail["techniqueID"])
-                if len(map_items) == 0:
-                    print("Technique "+ str(detail["techniqueID"]) + " not found")
-                else:
-                    print(map_items)
-                    #calculate color and comments
+                if len(map_items) >0:
+                    detail["color"] = map_items[0].color
+                # if len(map_items) == 0:
+                #     print("Technique "+ str(detail["techniqueID"]) + " not found")
+                # else:
+                #     print(map_items)
+                #     detail["color"] = self.yellow_color
+                #     #calculate color and comments
 
             
             with open(self.output_file_path, 'w') as result:
@@ -56,7 +60,15 @@ class LayerGenerator():
     # at various levels of protection, detection, and response, a calculation is done for the matrix
     # the score is indicated by a color - red, blue, yellow, or green
     def calculate_technique_score(self, map_items):
-        relevant_services = []
+        pass
+        # count_map = {self.blue_color:0,self.red_color:0,self.green_color:0,self.yellow_color:0}
+        # for item in map_items:
+        #     if item.color == self.blue_color:
+        #         blue_count = blue_count+1
+        #     elif item.color == self.yellow_color:
+        #         yellow_count = yellow_count+1
+
+
 
     
     def find_item_in_map(self, technique_map, techniqueID):
