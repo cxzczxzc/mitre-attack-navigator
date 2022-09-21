@@ -23,4 +23,4 @@ technique_to_capability = sheet_controller.get_technique_to_capability_map(sprea
 
 #layer generation
 layer_generator = LayerGenerator(layer_source_file_path=layer_source_file_path, output_file_path=capability_layer_destination_path)
-layer_generator.generate_layer(technique_map=technique_to_capability,name=configuration_layer_name)
+layer_generator.generate_layer(technique_map=technique_to_capability,name=capability_layer_name)

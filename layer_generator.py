@@ -50,16 +50,11 @@ class LayerGenerator():
                     detail["color"] = map_items[0].color
                 elif len(map_items) > 1:
                     detail["color"] = self.calculate_technique_color(map_items)
+                    if detail["color"] == self.blue_color:
+                        print("Blue:"+detail["techniqueID"])
                 #set custom metadata
                 metadata = self.calculate_metadata(map_items=map_items, metadata=detail["metadata"])
                 detail["metadata"] = metadata
-
-                # else:
-                #     print(map_items)
-                #     detail["color"] = self.yellow_color
-                #     #calculate color and comments
-
-            
             with open(self.output_file_path, 'w') as result:
                 json.dump(data, result)
     # in cases when a technique has multiple controls and applies to multiple tactics
@@ -79,7 +74,6 @@ class LayerGenerator():
                 colormap[self.red_color] = colormap[self.red_color] + 1
             elif item.color == self.green_color:
                 colormap[self.green_color] = colormap[self.green_color] + 1
-        print(colormap)
         if colormap[self.blue_color] > 0:
             if colormap[self.blue_color] > colormap[self.yellow_color]:
                 return self.blue_color
@@ -89,27 +83,27 @@ class LayerGenerator():
         
 
     def calculate_metadata(self, map_items, metadata):
-        notes_string = "Number of applicable GCP services: " + str(len(map_items))
+        notes_string = str(len(map_items)) +" GCP services apply" + str(len(map_items))
+        notes = [{"name" : "Notes", "value": notes_string}, {"divider":True}]
+        service_status = []
         for item in map_items:
-            if item.notes is not None:
-                notes_string = notes_string  + item.service + ": "+ item.notes
-        notes = {"name" : "Notes", "value": notes_string}
-        src_metadata = metadata
+            if item.notes is None:
+                item.notes = ""
+            if item.color == self.red_color:
+                service_status.append({"name": item.service, "value":"This service is not in use at DnB."})
+            if item.color == self.blue_color:
+                service_status.append({"name": item.service, "value": "A third party tool is in use." + item.notes })
+            if item.color == self.green_color:
+                service_status.append({"name": item.service, "value": "Capability is available." + item.notes})
+            if item.color == self.yellow_color:
+                service_status.append({"name": item.service, "value": "Capability is planned but not active yet." +item.notes})
+        
+        for x in service_status:
+            notes.append(x)
+            notes.append({"divider": True})
+
         final_metadata = []
         final_metadata.append(notes)
-        if metadata is not None:
-            for mtd in src_metadata:
-                if mtd == {"divider":True}:
-                    continue
-                control_string = ""
-                scoring = ""
-                if mtd["name"] == "control":
-                    control_string = control_string + mtd["value"] + " "
-                if mtd["name"] == "category":
-                    scoring = scoring + mtd["value"] + "-"
-                if mtd["name"] == "value":
-                    scoring = scoring + mtd["value"] + " "
-                final_metadata.append({"name":"GCP Services and scores", "value" : control_string+scoring})
         return final_metadata
 
 
