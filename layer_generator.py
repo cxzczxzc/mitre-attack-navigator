@@ -39,6 +39,7 @@ class LayerGenerator():
             data["legendItems"] = self.get_legend_items()
             
             for detail in data["techniques"]:
+                detail["showSubtechniques"] = False
                 if detail["techniqueID"] in disabled_techniques:
                     detail["enabled"] = False
                     continue
@@ -54,12 +55,12 @@ class LayerGenerator():
                         print("Blue:"+detail["techniqueID"])
                 #set custom metadata
                 metadata = self.calculate_metadata(map_items=map_items, metadata=detail["metadata"])
+                detail[metadata] = []
                 detail["metadata"] = metadata
             with open(self.output_file_path, 'w') as result:
                 json.dump(data, result)
-    # in cases when a technique has multiple controls and applies to multiple tactics
-    # at various levels of protection, detection, and response, a calculation is done for the matrix
-    # the score is indicated by a color - red, blue, yellow, or green
+
+    
     def calculate_technique_color(self, map_items):
         colormap = {self.blue_color :0,
         self.green_color : 0,
