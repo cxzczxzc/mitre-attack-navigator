@@ -16,15 +16,24 @@ TTP is an acronym for Tactics, Techniques, and Procedures.
 ## Artifacts
 
 There are two main artifacts involved:
-- A Google Sheets Workbook
+- A Google Sheets Spreadsheet
     - This workbook contains spreadsheets that map out various aspects of the attack matrix. It contains 3 spreadsheets. 
         1. **Assessment by Control/Product:** This spreadsheet contains a list of all the GCP services relevant within the context of the attack matrix. To protect, detect, or respond to a TTP, the relevant GCP services should be in use by the customer, and configured properly. This sheet is a good starting point to understand which services are in use by a customer. 
         2. **Control/Product to Technique:** This spreadsheet contains a list of Techniques mapped to the GCP service that can protect, detect, or respond against each technique. Just because a customer has a GCP service enabled, it does mean that they're secured against a technique. The service has to be configured properly as well.This sheet maps techniques to services (Capability) as well as proper setup of those services (Capabilities)
         3. **Tactic/Technique**: This spreadsheet contains an overall view of TTPs and GCP services.
 
- ## How to use it
- - TBD
+ ## Usage
+ Assuming you have a Google Sheets Spreadsheets already filled out, you can run this code to generate the heatmap
+ ### Prerequisites
+ 1. pip version 22.1.2
+ 2. Python 3.8.9
+ 3. A GCP service account, with Google Sheets API enabled, and access to the the Google Sheets Spreadsheet
+ 
+ ### Generate the heatmap
+ - Modify the variables in `main.py` to match the values in your case. 
+ - Run `init.sh` to install the python packages
+ - Run `python .\main.py` to generate the heatmap
 
- ## How to generate the heatmap
-- TBD
+ ### Visualize the heatmap
+ - TBD
 
