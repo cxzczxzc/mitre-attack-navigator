@@ -22,6 +22,10 @@ There are two main artifacts involved:
         1. **Assessment by Control/Product:** This tab contains a list of all the GCP services relevant within the context of the attack matrix. To protect, detect, or respond to a TTP, the relevant GCP services should be in use by the customer, and configured properly. This sheet is a good starting point to understand which services are in use by a customer. 
         2. **Control/Product to Technique:** This tab contains a list of Techniques mapped to the GCP service that can protect, detect, or respond against each technique. Just because a customer has a GCP service enabled, it does mean that they're secured against a technique. The service has to be configured properly as well.This sheet maps techniques to services (Capability) as well as proper setup of those services (Capabilities)
         3. **Tactic/Technique**: This tab contains an overall view of TTPs and GCP services.
+- A set of python scripts
+    - These scripts parse the data contained in Google Sheets into JSON
+    - The JSON is then uploaded to render heatmaps on the [MITRE ATT&CK® Navigator site](https://mitre-attack.github.io/attack-navigator/)
+]
 
  ## Usage
  Assuming you have a Google Sheets Document with all the tabs already filled out, you can run this code to generate the heatmap
