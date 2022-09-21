@@ -55,7 +55,6 @@ class LayerGenerator():
                         print("Blue:"+detail["techniqueID"])
                 #set custom metadata
                 metadata = self.calculate_metadata(map_items=map_items, metadata=detail["metadata"])
-                detail[metadata] = []
                 detail["metadata"] = metadata
             with open(self.output_file_path, 'w') as result:
                 json.dump(data, result)
@@ -91,13 +90,13 @@ class LayerGenerator():
             if item.notes is None:
                 item.notes = ""
             if item.color == self.red_color:
-                service_status.append({"name": item.service, "value":"This service is not in use at DnB."})
+                service_status.append({"name": item.service, "value":"This service is not in use at DnB. "})
             if item.color == self.blue_color:
-                service_status.append({"name": item.service, "value": "A third party tool is in use." + item.notes })
+                service_status.append({"name": item.service, "value": "A third party tool is in use. " + item.notes })
             if item.color == self.green_color:
-                service_status.append({"name": item.service, "value": "Capability is available." + item.notes})
+                service_status.append({"name": item.service, "value": "Capability is available. " + item.notes})
             if item.color == self.yellow_color:
-                service_status.append({"name": item.service, "value": "Capability is planned but not active yet." +item.notes})
+                service_status.append({"name": item.service, "value": "Capability is planned but not active yet. " +item.notes})
         
         for x in service_status:
             notes.append(x)
