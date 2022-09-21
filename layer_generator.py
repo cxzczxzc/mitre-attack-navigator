@@ -57,6 +57,8 @@ class LayerGenerator():
                 detail["metadata"] = metadata
             with open(self.output_file_path, 'w') as result:
                 json.dump(data, result)
+    
+    
     # in cases when a technique has multiple controls and applies to multiple tactics
     # at various levels of protection, detection, and response, a calculation is done for the matrix
     # the score is indicated by a color - red, blue, yellow, or green
@@ -83,19 +85,12 @@ class LayerGenerator():
         
 
     def calculate_metadata(self, map_items, metadata):
-        notes_string = str(len(map_items)) +" GCP services apply" + str(len(map_items))
+        notes_string = str(len(map_items)) +" GCP service(s) apply."
         service_status = []
         for item in map_items:
             if item.notes is None:
                 item.notes = ""
-            if item.color == self.red_color:
-                service_status.append({item.service: "This service is not in use at DnB."})
-            if item.color == self.blue_color:
-                service_status.append({item.service: "A third party tool is in use." + item.notes })
-            if item.color == self.green_color:
-                service_status.append({item.service: "Capability is available." + item.notes})
-            if item.color == self.yellow_color:
-                service_status.append({item.service: "Capability is planned but not active yet." +item.notes})
+            service_status.append({"name":item.service, "value":  item.notes})
         
         notes = [{"name" : "Notes", "value": notes_string}, {"divider":True}]
         final_metadata = []
@@ -104,7 +99,8 @@ class LayerGenerator():
 
         if metadata is not None:
             for x in service_status:
-                pass
+                final_metadata.append(x)
+                final_metadata.append({"divider": True})
         return final_metadata
 
 
