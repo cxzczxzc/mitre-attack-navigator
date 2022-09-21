@@ -80,7 +80,7 @@ class SheetController():
                     technique_to_capability.color = self.yellow_color #yellow
                 elif row[capability_row_index].strip()=='3rd Party Tool In Use':
                     technique_to_capability.color = self.blue_color #blue
-                if len(row) >= notes_row_index:
+                if len(row) > notes_row_index:
                     if row[notes_row_index].strip():
                         technique_to_capability.notes = row[notes_row_index].strip()
                 else:
@@ -134,3 +134,41 @@ class SheetController():
                     result.append(technique_to_configuration)
             return result
 
+    def get_technique_to_future_configuration_map(self, spreadsheet_id, range):
+            rows = self.get_values(spreadsheet_id=spreadsheet_id, range_name=range)
+            
+            service_row_index = 0
+            technique_row_index = 1
+            configuration_row_index = 8
+            service_row_index = 0
+            notes_row_index = 10
+            
+            result = []
+            for row in rows:
+                if row[technique_row_index].strip() == "N/A - Not Mappable" or \
+                row[technique_row_index].strip() == "Technique ID":
+                    continue
+                else:
+                    technique_to_configuration  = TechniqueMap()
+                    technique_to_configuration.technique = row[technique_row_index].strip()
+                    technique_to_configuration.capability = row[configuration_row_index].strip()
+                    technique_to_configuration.service = row[service_row_index].strip()
+                    if row[configuration_row_index].strip()=='Y':
+                        technique_to_configuration.color = self.green_color #green
+                    elif row[configuration_row_index].strip()=='N':
+                        technique_to_configuration.color = self.red_color #red
+                    elif row[configuration_row_index].strip()=='TBD':
+                        technique_to_configuration.color = self.yellow_color #yellow
+                    elif row[configuration_row_index].strip()=='3rd Party Tool In Use':
+                        technique_to_configuration.color = self.blue_color #blue
+                    
+                    if technique_to_configuration.color == self.green_color:
+                        technique_to_configuration.notes = "Configuration in place"
+                    elif technique_to_configuration.color == self.blue_color:
+                        technique_to_configuration.notes = "Using third party product"
+                    elif technique_to_configuration.notes == self.yellow_color:
+                        technique_to_configuration.notes = "Configuration planned but not available yet"
+                    elif technique_to_configuration.notes == self.red_color:
+                        technique_to_configuration.notes == "Gap because relevant GCP service is not in use"
+                    result.append(technique_to_configuration)
+            return result
