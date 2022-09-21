@@ -1,4 +1,5 @@
 import json
+from turtle import color
 from sheet_controller import TechniqueMap
 
 class LayerGenerator():
@@ -38,16 +39,21 @@ class LayerGenerator():
             data["legendItems"] = self.get_legend_items()
             
             for detail in data["techniques"]:
-                
                 if detail["techniqueID"] in disabled_techniques:
                     detail["enabled"] = False
                     continue
-                
                 map_items = self.find_item_in_map(technique_map, detail["techniqueID"])
-                if len(map_items) >0:
+                #set correct color
+                if len(map_items) == 0:
+                    print("Technique "+ str(detail["techniqueID"]) + " not found")
+                elif len(map_items) == 1:
                     detail["color"] = map_items[0].color
-                # if len(map_items) == 0:
-                #     print("Technique "+ str(detail["techniqueID"]) + " not found")
+                elif len(map_items) > 1:
+                    detail["color"] = self.calculate_technique_color(map_items)
+                #set custom metadata
+                metadata = self.calculate_metadata(map_items=map_items, metadata=detail["metadata"])
+                detail["metadata"] = metadata
+
                 # else:
                 #     print(map_items)
                 #     detail["color"] = self.yellow_color
@@ -59,15 +65,61 @@ class LayerGenerator():
     # in cases when a technique has multiple controls and applies to multiple tactics
     # at various levels of protection, detection, and response, a calculation is done for the matrix
     # the score is indicated by a color - red, blue, yellow, or green
-    def calculate_technique_score(self, map_items):
-        pass
-        # count_map = {self.blue_color:0,self.red_color:0,self.green_color:0,self.yellow_color:0}
-        # for item in map_items:
-        #     if item.color == self.blue_color:
-        #         blue_count = blue_count+1
-        #     elif item.color == self.yellow_color:
-        #         yellow_count = yellow_count+1
+    def calculate_technique_color(self, map_items):
+        colormap = {self.blue_color :0,
+        self.green_color : 0,
+        self.red_color: 0,
+        self.yellow_color :0}
+        for item in map_items:
+            if item.color == self.blue_color:
+                colormap[self.blue_color] = colormap[self.blue_color] + 1
+            elif item.color == self.yellow_color:
+                colormap[self.yellow_color] = colormap[self.yellow_color] + 1
+            elif item.color == self.red_color:
+                colormap[self.red_color] = colormap[self.red_color] + 1
+            elif item.color == self.green_color:
+                colormap[self.green_color] = colormap[self.green_color] + 1
+        print(colormap)
+        if colormap[self.blue_color] > 0:
+            if colormap[self.blue_color] > colormap[self.yellow_color]:
+                return self.blue_color
+            else:
+                return self.yellow_color
+        return str(max(colormap, key=lambda key: colormap[key]))
+        
 
+    def calculate_metadata(self, map_items, metadata):
+        notes_string = "Number of applicable GCP services: " + str(len(map_items))
+        for item in map_items:
+            if item.notes is not None:
+                notes_string = notes_string  + item.service + ": "+ item.notes
+        notes = {"name" : "Notes", "value": notes_string}
+        src_metadata = metadata
+        final_metadata = []
+        final_metadata.append(notes)
+        if metadata is not None:
+            for mtd in src_metadata:
+                if mtd == {"divider":True}:
+                    continue
+                control_string = ""
+                scoring = ""
+                if mtd["name"] == "control":
+                    control_string = control_string + mtd["value"] + " "
+                if mtd["name"] == "category":
+                    scoring = scoring + mtd["value"] + "-"
+                if mtd["name"] == "value":
+                    scoring = scoring + mtd["value"] + " "
+                final_metadata.append({"name":"GCP Services and scores", "value" : control_string+scoring})
+        return final_metadata
+
+
+            
+        
+                
+
+
+
+            
 
 
     
@@ -146,5 +198,6 @@ class LayerGenerator():
                 "T1029",
                 "T1531",
                 "T1489",
-                "T1529"]
+                "T1529", 
+                "T1565"]
     

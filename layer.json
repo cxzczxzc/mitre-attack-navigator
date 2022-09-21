@@ -13884,6 +13884,36 @@
 			"showSubtechniques": true
 		},
 		{
+			"techniqueID": "T1200",
+			"tactic": "initial-access",
+			"color": "",
+			"comment": "",
+			"enabled": true,
+			"metadata": [],
+			"links": [],
+			"showSubtechniques": true
+		},
+		{
+			"techniqueID": "T1565",
+			"tactic": "impact",
+			"color": "",
+			"comment": "",
+			"enabled": true,
+			"metadata": [],
+			"links": [],
+			"showSubtechniques": true
+		},
+		{
+			"techniqueID": "T1091",
+			"tactic": "initial-access",
+			"color": "",
+			"comment": "",
+			"enabled": true,
+			"metadata": [],
+			"links": [],
+			"showSubtechniques": true
+		},
+		{
 			"techniqueID": "T1558",
 			"tactic": "credential-access",
 			"color": "",

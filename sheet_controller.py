@@ -93,10 +93,8 @@ class SheetController():
                     technique_to_capability.color = self.red_color #red
                 elif row[capability_row_index].strip()=='TBD':
                     technique_to_capability.color = self.yellow_color #yellow
-                elif row[capability_row_index].strip()=='3rd Party Service in Use':
+                elif row[capability_row_index].strip()=='3rd Party Tool In Use':
                     technique_to_capability.color = self.blue_color #blue
-                else:
-                    technique_to_capability.color = self.red_color #red
                 if len(row) >= notes_row_index:
                     if row[notes_row_index].strip():
                         technique_to_capability.notes = row[notes_row_index].strip()
