@@ -24,8 +24,8 @@ There are two main artifacts involved:
         3. **Tactic/Technique**: This tab contains an overall view of TTPs and GCP services.
 - A set of python scripts
     - These scripts parse the data contained in Google Sheets into JSON
-    - The JSON is then uploaded to render heatmaps on the [MITRE ATT&CK® Navigator](https://mitre-attack.github.io/attack-navigator/)
-]
+    - The JSON is then uploaded to render heatmaps on the [MITRE ATT&CK® Navigator website.](https://mitre-attack.github.io/attack-navigator/)
+
 
  ## Usage
  Assuming you have a Google Sheets Document with all the tabs already filled out, you can run this code to generate the heatmap
