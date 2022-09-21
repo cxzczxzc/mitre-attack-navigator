@@ -16,21 +16,23 @@ TTP is an acronym for Tactics, Techniques, and Procedures.
 ## Artifacts
 
 There are two main artifacts involved:
-- A Google Sheets Spreadsheet
-    - This workbook contains spreadsheets that map out various aspects of the attack matrix. It contains 3 spreadsheets. 
-        1. **Assessment by Control/Product:** This spreadsheet contains a list of all the GCP services relevant within the context of the attack matrix. To protect, detect, or respond to a TTP, the relevant GCP services should be in use by the customer, and configured properly. This sheet is a good starting point to understand which services are in use by a customer. 
-        2. **Control/Product to Technique:** This spreadsheet contains a list of Techniques mapped to the GCP service that can protect, detect, or respond against each technique. Just because a customer has a GCP service enabled, it does mean that they're secured against a technique. The service has to be configured properly as well.This sheet maps techniques to services (Capability) as well as proper setup of those services (Capabilities)
-        3. **Tactic/Technique**: This spreadsheet contains an overall view of TTPs and GCP services.
+- A Google Sheets Document
+    - This spreadsheets contains tabs that map out various aspects of the attack matrix. It contains 3 tabs. 
+        1. **Assessment by Control/Product:** This tab contains a list of all the GCP services relevant within the context of the attack matrix. To protect, detect, or respond to a TTP, the relevant GCP services should be in use by the customer, and configured properly. This sheet is a good starting point to understand which services are in use by a customer. 
+        2. **Control/Product to Technique:** This tab contains a list of Techniques mapped to the GCP service that can protect, detect, or respond against each technique. Just because a customer has a GCP service enabled, it does mean that they're secured against a technique. The service has to be configured properly as well.This sheet maps techniques to services (Capability) as well as proper setup of those services (Capabilities)
+        3. **Tactic/Technique**: This tab contains an overall view of TTPs and GCP services.
 
  ## Usage
- Assuming you have a Google Sheets Spreadsheets already filled out, you can run this code to generate the heatmap
+ Assuming you have a Google Sheets Document with all the tabs already filled out, you can run this code to generate the heatmap
  ### Prerequisites
  1. pip version 22.1.2
  2. Python 3.8.9
- 3. A GCP service account, with Google Sheets API enabled, and access to the the Google Sheets Spreadsheet
+ 3. A GCP service account key, with Google Sheets API enabled, and access to the the Google Sheets Document (Share the document with the service account email ID)
  
  ### Generate the heatmap
- - Modify the variables in `main.py` to match the values in your case. 
+ - Run `git clone https://github.com/cxzczxzc/mitre-attack-navigator.git` from a terminal
+ - Download the GCP Service Account key with Google Sheets API enabled and save it in the `mitre-attack-navigator` folder
+ - Modify the variables in `main.py` to match the values in your case. (Lines 5-17) 
  - Run `init.sh` to install the python packages
  - Run `python .\main.py` to generate the heatmap
 
