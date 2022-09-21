@@ -23,8 +23,10 @@ There are two main artifacts involved:
         2. **Control/Product to Technique:** This tab contains a list of Techniques mapped to the GCP service that can protect, detect, or respond against each technique. Just because a customer has a GCP service enabled, it does mean that they're secured against a technique. The service has to be configured properly as well.This sheet maps techniques to services (Capability) as well as proper setup of those services (Capabilities)
         3. **Tactic/Technique**: This tab contains an overall view of TTPs and GCP services.
 - A set of python scripts
+
     - These scripts parse the data contained in Google Sheets into JSON
     - The JSON is then uploaded to render heatmaps on the [MITRE ATT&CK® Navigator website.](https://mitre-attack.github.io/attack-navigator/)
+    - The official GCP heatmap can be seen [here](https://mitre-attack.github.io/attack-navigator/#layerURL=https://center-for-threat-informed-defense.github.io/security-stack-mappings/GCP/layers/platform.json)
 
 
  ## Usage
