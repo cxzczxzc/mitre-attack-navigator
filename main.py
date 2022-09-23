@@ -25,13 +25,22 @@ technique_to_configuration = sheet_controller.get_technique_to_configuration_map
 technique_to_future_state = sheet_controller.get_technique_to_future_configuration_map(spreadsheet_id=spreadsheet_id, range=control_to_technique_range)
 
 #layer generation
-layer_generator = LayerGenerator(layer_source_file_path=layer_source_file_path, output_file_path=capability_layer_destination_path)
-layer_generator.generate_layer(technique_map=technique_to_capability,name=capability_layer_name)
 
-layer_generator = LayerGenerator(layer_source_file_path=layer_source_file_path, output_file_path=configuration_layer_destination_path)
-layer_generator.generate_layer(technique_map=technique_to_configuration,name=configuration_layer_name)
+layer_generator = LayerGenerator(layer_source_file_path=layer_source_file_path, 
+                                output_file_path=capability_layer_destination_path)
+layer_generator.generate_layer(technique_map=technique_to_capability,
+                                name=capability_layer_name)
 
-layer_generator = LayerGenerator(layer_source_file_path=layer_source_file_path, output_file_path=future_state_layer_destination_path)
-layer_generator.generate_layer(technique_map=technique_to_future_state, name=future_state_layer_name)
+
+layer_generator = LayerGenerator(layer_source_file_path=layer_source_file_path, 
+                                output_file_path=configuration_layer_destination_path)
+layer_generator.generate_layer(technique_map=technique_to_configuration,
+                                name=configuration_layer_name)
+
+
+layer_generator = LayerGenerator(layer_source_file_path=layer_source_file_path, 
+                                    output_file_path=future_state_layer_destination_path)
+layer_generator.generate_layer(technique_map=technique_to_future_state, 
+                                name=future_state_layer_name)
 
 
